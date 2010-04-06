@@ -1,0 +1,9 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Show", @employee %></li>	
+		<li><%= link_to "View All", employees_path %></li>
+ 	</ul>
+</div>
+<% title "Edit Employee" %>
+
+<%= render :partial => 'form' %>

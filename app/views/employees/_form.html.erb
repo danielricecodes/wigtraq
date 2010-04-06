@@ -1,0 +1,37 @@
+<% form_for @employee do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.label :angel_name %><br />
+    <%= f.text_field :angel_name %>
+  </p>
+  <p>
+  	<%= f.label :active_bool, "Active?" %><br />
+    <%= f.select :active_bool, [["Yes", true],["No", false]] %>
+  </p>
+  <p>
+  	<%= f.label :included_in_training, "Included In Training Reports?" %><br />
+    <%= f.select :included_in_training, [["Yes", true],["No", false]] %>
+  </p>
+  <p>
+  	<%= f.label :included_in_availability, "Included In Availability Reports?" %><br />
+    <%= f.select :included_in_availability, [["Yes", true],["No", false]] %>
+  </p>
+  <p>
+  	<%= f.label :region %><br />
+    <%= f.select :region, Region.all.collect {|p| [ p.name ] } %>
+  </p>
+  <p>
+  	<%= f.label :role %><br />
+    <%= f.select :role, ["TSE", "CSR", "Contracts", "Management"] %>
+  </p>  
+  <p>
+  	<%= f.label :manager_id %><br />
+    <%= f.select :manager_id, Manager.all.collect {|p| [ p.name, p.id ] }, :include_blank=>true %>
+  </p>
+  
+  <p><%= f.submit "Submit" %></p>
+<% end %>

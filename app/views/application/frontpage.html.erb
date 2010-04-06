@@ -1,0 +1,48 @@
+<%= render :partial => 'frontpage_side_navbar' %>
+<div class="yield_content">
+	<div>Last Refreshed: <%= Time.now.strftime("%m/%d/%Y at %I:%M %p %Z") %> | <%= link_to_remote 'Refresh', :url=>{:controller=>'application', :action=>'expire_frontpage_ajax'} %>
+	<div id="bucks_chartcontainer">Javascript must be enabled.</div>
+	<% if @training_winner %>
+	<div id="most_training">Who Did The Most Training: <%= @training_winner%> with <%= @training_winner_hours %></div>	
+	<%end%>
+</div>
+
+	<script type="text/javascript">
+	      var myData = new Array(<%= @bucks_array %>);
+		  var myChart = new JSChart('bucks_chartcontainer', 'bar');
+		  myChart.setDataArray(myData);		  
+		  myChart.setAxisNameX('Employee Name');
+		  myChart.setAxisNameY('Total Bucks');
+		  myChart.setTitle('Bucks for 2H 2009');
+		  myChart.setTitleColor('#000000');
+		  myChart.setTitleFontSize(20);
+		  myChart.setAxisNameColor('#000')
+		  myChart.setSize(700, 321);
+		  myChart.setAxisPaddingTop(60);
+	      myChart.setAxisPaddingBottom(40);
+		  myChart.setAxisPaddingLeft(45);
+	      myChart.draw();
+		  
+		  
+</script>
+<% if @training_winner %>
+<script type="text/javascript">
+		  var data2 = new Array(["<%= @training_winner%>",<%= @training_winner_hours %>]);
+		  var chart2 = new JSChart('most_training', 'bar');
+		  chart2.setDataArray(data2);
+		  
+		  chart2.setAxisNameX('<%= @training_winner%>');
+		  chart2.setAxisNameY('Training');
+		  chart2.setTitle('Most Training Last Week');
+		  chart2.setTitleColor('#000000');
+		  chart2.setTitleFontSize(20);
+		  chart2.setAxisNameColor('#000')
+		  chart2.setSize(500, 321);
+		  chart2.setAxisPaddingTop(60);
+	      chart2.setAxisPaddingBottom(40);
+		  chart2.setAxisPaddingLeft(45);
+
+	      chart2.draw();
+</script>
+<%end%>
+

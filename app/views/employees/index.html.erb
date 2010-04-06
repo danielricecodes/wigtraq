@@ -1,0 +1,31 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "New Employee", new_employee_path %></li>
+		<li><%= link_to "Options and Baselines", options_path %></li>	
+ 	</ul>
+</div>
+<h2>Listing Employees</h2>
+<div class="record_details">
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Manager's Name</th>
+	<th>Region</th>
+	<th>Role</th>
+	<th>Active?</th>
+  </tr>
+  <% for employee in @employees %>
+    <tr>
+      <td><%=h employee.name %></td>
+	  <td><%=h employee.manager.try(:name) %></td>
+	  <td><%=h employee.region %></td>
+	  <td><%=h employee.role %></td>
+	  <td><%= display_boolean(employee.active_bool)%></td>
+      <td><%= link_to "Show", employee %></td>
+      <td><%= link_to "Edit", edit_employee_path(employee) %></td>
+      <td><%= link_to "Destroy", employee, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+

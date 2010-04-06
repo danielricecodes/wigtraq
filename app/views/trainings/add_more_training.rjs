@@ -1,0 +1,4 @@
+page.insert_html :bottom, :trainings_multi, :partial => 'training_fields',
+                 :locals => { :training => @training, :index => params[:index] }
+
+page.replace :add_training_link, :partial => 'add_training_link', :locals => { :index => (params[:index].to_i + 1) }

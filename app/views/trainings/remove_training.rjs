@@ -1,0 +1,1 @@
+page["training_#{params[:index]}"].remove

@@ -1,0 +1,16 @@
+<% form_for @manager do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.label :active_bool, "Active?" %><br />
+    <%= f.select :active_bool, [["Yes", true],["No", false]] %>
+  </p>
+  <p>
+  	<%= f.label :region %><br />
+    <%= f.select :region, Region.all.collect {|p| [ p.name ] } %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

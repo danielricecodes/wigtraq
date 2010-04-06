@@ -1,0 +1,19 @@
+<% form_for @availability, :url=>availabilities_path, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+  	<ol>
+  	<li>Download non-stats report from Angel is CSV format.  It is important that you capture all events, not just AWAY events. You will need to generate 2 files, one for CSRs and another for TSE</li>
+	<li>Upload the CSV files without modifications into the Upload Availability form. </li>
+	<li>Wait for a while while the upload completes.  This could take a while so please be patient.</li>
+	<li>Then run the availability for last week report and you’ll get the percentage to put up onto the monitor.</li>	</ol>
+    </ol>	
+  <p>
+    <label for="uploaded_data1">Select the Tier 1 CSV file:</label>
+    <%= f.file_field :uploaded_data1 %>
+  </p>  
+  <p>
+    <label for="uploaded_data2">Select the Tier 2 CSV file:</label>
+    <%= f.file_field :uploaded_data2 %>
+  </p>  
+  <p><%= f.submit "Submit", :disable_with=>"Processing..." %></p>
+<% end %>

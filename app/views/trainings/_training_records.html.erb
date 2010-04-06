@@ -1,0 +1,23 @@
+<div class="record_details">
+	<div><h4>Record Details</h4></div>
+	<table>
+	  <tr>
+	  	<th>Name</th>	
+	  	<th>Date</th>
+	    <th>Type</th>
+		<th>Amount</th>
+		<th>Description</th>
+	  </tr>
+	  <% @trainings.each do |training| %>
+	    <tr class="<%= cycle("blank_bg", "grey_bg") %>">
+	      <td><%= training.employee.name%></td>      
+		  <td><%= training.trainingDate.to_s :pretty %></td>
+	      <td><%= training.brand.capitalize %></td>
+		  <td><%= training.hours_trained %></td>
+		  <td><%= simple_format training.description %>
+	      <td><%= link_to "Edit", edit_training_path(training) %></td>
+	      <td><%= link_to "Delete", training_path(training), :confirm => 'Are you sure?', :method => :delete %></td>
+	    </tr>
+	  <% end %>
+	</table>
+</div>

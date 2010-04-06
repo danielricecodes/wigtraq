@@ -1,0 +1,9 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Back", trainings_path %></li>		
+ 	</ul>
+</div>
+<h2><%= "Training for #{@employee.name}"%></h2>
+<%= render :partial => 'training_summary' %>
+<br><br>
+<%= render :partial => 'training_records' %>

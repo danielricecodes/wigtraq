@@ -1,0 +1,4 @@
+page.insert_html :bottom, :time_offs_multi, :partial => 'time_off_fields',
+                 :locals => { :time_off => @time_off, :index => params[:index] }
+
+page.replace :add_time_off_link, :partial => 'add_time_off_link', :locals => { :index => (params[:index].to_i + 1) }

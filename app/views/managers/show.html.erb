@@ -1,0 +1,20 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Edit", edit_manager_path(@manager) %></li>
+  		<li><%= link_to "Destroy", @manager, :confirm => 'Are you sure?', :method => :delete %></li>
+  		<li><%= link_to "View All", managers_path %></li>
+ 	</ul>
+</div>
+<h2><%=h @manager.name %></h2>
+<p>
+  <strong>Region:</strong>
+  <%=h @manager.region %>
+</p>
+<p>
+  <strong>Active?:</strong>
+  <%= display_boolean(@manager.active_bool) %>
+</p>
+
+<p>
+  
+</p>

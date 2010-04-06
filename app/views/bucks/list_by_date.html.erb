@@ -1,0 +1,29 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Back", bucks_path %></li>		
+ 	</ul>
+</div>
+<div class="record_details">
+	<div><h4>Bucks Awarded Between <%= @start_date %> and <%= @end_date %></h4></div>
+	<table>
+	  <tr>
+	    <th>Award Date</th>
+	    <th>Reason</th>
+	    <th>Amount</th>
+	    <th>Manager</th>
+	    <th>Employee</th>
+	  </tr>
+	  <% for buck in @bucks %>
+	     <tr class="<%= cycle("blank_bg", "grey_bg") %>">
+	      <td><%=h buck.award_date %></td>
+	      <td><%= simple_format buck.reason %></td>
+	      <td><%=h buck.amount %></td>
+	      <td><%=h buck.manager.name %></td>
+	      <td><%=h buck.employee.name %></td>
+	      <td><%= link_to "Show", buck %></td>
+	      <td><%= link_to "Edit", edit_buck_path(buck) %></td>
+	      <td><%= link_to "Destroy", buck, :confirm => 'Are you sure?', :method => :delete %></td>
+	    </tr>
+	  <% end %>
+	</table>
+</div>

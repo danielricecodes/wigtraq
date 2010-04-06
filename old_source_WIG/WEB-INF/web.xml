@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This web.xml file referenced the tomcat suggestion:
+
+http://tomcat.apache.org/tomcat-6.0-doc/appdev/web.xml.txt
+
+-->
+
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+
+    <display-name>WIG</display-name>
+    <description>
+      Wildly Important Goals
+    </description>
+
+
+	    <!-- Context initialization parameters that define shared
+         String constants used within your application, which
+         can be customized by the system administrator who is
+         installing your application.  The values actually
+         assigned to these parameters can be retrieved in a
+         servlet or JSP page by calling:
+
+             String value =
+               getServletContext().getInitParameter("name");
+
+         where "name" matches the <param-name> element of
+         one of these initialization parameters.
+
+         You can define any number of context initialization
+         parameters, including zero.
+    -->
+
+    <context-param>
+      <param-name>administrator</param-name>
+      <param-value>mherman@borland.com</param-value>
+      <description>
+        The EMAIL address of the administrator to whom questions
+        and comments about this application should be addressed.
+      </description>
+    </context-param>
+
+
+
+    <servlet>
+      <servlet-name>AddRecord</servlet-name>
+      <description>
+        This servlet is sent form data from the "Add Records" page of the application.
+		It adds the data to the database and generates a confirmation HTML page 
+		if successful.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.AddRecord</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AddRecord</servlet-name>
+      <url-pattern>/AddRecord</url-pattern>
+    </servlet-mapping>
+
+
+
+
+	<servlet>
+      <servlet-name>ThisWeekServlet</servlet-name>
+      <description>
+		This servlet generates a report showing all kudos entered this week.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.ThisWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ThisWeekServlet</servlet-name>
+      <url-pattern>/ThisWeekServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+	<servlet>
+      <servlet-name>LastWeekServlet</servlet-name>
+      <description>
+		This servlet generates a report showing all kudos entered last week.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.LastWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>LastWeekServlet</servlet-name>
+      <url-pattern>/LastWeekServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+	<servlet>
+      <servlet-name>ShowAllServlet</servlet-name>
+      <description>
+		This servlet generates a report showing all kudos entered during a
+		specified date range.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.ShowAllServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ShowAllServlet</servlet-name>
+      <url-pattern>/ShowAllServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+
+	<servlet>
+      <servlet-name>EmployeeDatesServlet</servlet-name>
+      <description>
+		This servlet generates a report showing all kudos entered during a
+		specified date range and for a specific employee.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.EmployeeDatesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>EmployeeDatesServlet</servlet-name>
+      <url-pattern>/EmployeeDatesServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+	<servlet>
+      <servlet-name>KudosManagerDatesServlet</servlet-name>
+      <description>
+		This servlet generates a report showing all kudos entered during a
+		specified date range and for a specific manager.
+      </description>
+      <servlet-class>com.borland.support.wig.Kudos.KudosManagerDatesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>KudosManagerDatesServlet</servlet-name>
+      <url-pattern>/KudosManagerDatesServlet</url-pattern>
+    </servlet-mapping>
+
+	
+	
+	<servlet>
+      <servlet-name>ManagerServlet</servlet-name>
+      <description>
+		This servlet adds a manager
+      </description>
+      <servlet-class>com.borland.support.wig.options.ManagerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ManagerServlet</servlet-name>
+      <url-pattern>/ManagerServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>EmployeeServlet</servlet-name>
+      <description>
+		This servlet adds an employee
+      </description>
+      <servlet-class>com.borland.support.wig.options.EmployeeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>EmployeeServlet</servlet-name>
+      <url-pattern>/EmployeeServlet</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>ProductsServlet</servlet-name>
+      <description>
+		This servlet adds a product
+      </description>
+      <servlet-class>com.borland.support.wig.options.ProductsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ProductsServlet</servlet-name>
+      <url-pattern>/ProductsServlet</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>AddTrainingServlet</servlet-name>
+      <description>
+		This servlet adds training hours
+      </description>
+      <servlet-class>com.borland.support.wig.training.AddTrainingServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AddTrainingServlet</servlet-name>
+      <url-pattern>/AddTrainingServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+	<servlet>
+      <servlet-name>TrainingThisWeekServlet</servlet-name>
+      <description>
+		This servlet reports on training hours this week.
+      </description>
+      <servlet-class>com.borland.support.wig.training.TrainingThisWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TrainingThisWeekServlet</servlet-name>
+      <url-pattern>/TrainingThisWeekServlet</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>TrainingShowAllServlet</servlet-name>
+      <description>
+		This servlet reports on training hours this week.
+      </description>
+      <servlet-class>com.borland.support.wig.training.TrainingShowAllServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TrainingShowAllServlet</servlet-name>
+      <url-pattern>/TrainingShowAllServlet</url-pattern>
+    </servlet-mapping>
+
+		<servlet>
+      <servlet-name>TrainingManagerDatesServlet</servlet-name>
+      <description>
+		This servlet reports on training hours this week.
+      </description>
+      <servlet-class>com.borland.support.wig.training.TrainingManagerDatesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TrainingManagerDatesServlet</servlet-name>
+      <url-pattern>/TrainingManagerDatesServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+		<servlet>
+      <servlet-name>TrainingLastWeekServlet</servlet-name>
+      <description>
+		This servlet reports on training hours this week.
+      </description>
+      <servlet-class>com.borland.support.wig.training.TrainingLastWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TrainingLastWeekServlet</servlet-name>
+      <url-pattern>/TrainingLastWeekServlet</url-pattern>
+    </servlet-mapping>
+
+
+			<servlet>
+      <servlet-name>TrainingEmployeeDatesServlet</servlet-name>
+      <description>
+		This servlet reports on training hours this week.
+      </description>
+      <servlet-class>com.borland.support.wig.training.TrainingEmployeeDatesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TrainingEmployeeDatesServlet</servlet-name>
+      <url-pattern>/TrainingEmployeeDatesServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>AngelUploadServlet</servlet-name>
+      <description>
+		This servlet process an excel file (generated by Angel) uploaded by the web interface.
+      </description>
+      <servlet-class>com.borland.support.wig.availability.AngelUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AngelUploadServlet</servlet-name>
+      <url-pattern>/AngelUploadServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>CaseReviewsShowAllServlet</servlet-name>
+      <description>
+		This servlet process contacts SFDC via web service to report on Case Reviews within a date range.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseReviewsShowAllServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseReviewsShowAllServlet</servlet-name>
+      <url-pattern>/CaseReviewsShowAllServlet</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>CaseReviewsThisWeekServlet</servlet-name>
+      <description>
+		This servlet process contacts SFDC via web service to report on Case Reviews this week.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseReviewsThisWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseReviewsThisWeekServlet</servlet-name>
+      <url-pattern>/CaseReviewsThisWeekServlet</url-pattern>
+    </servlet-mapping>
+
+	
+	<servlet>
+      <servlet-name>CaseReviewsLastWeekServlet</servlet-name>
+      <description>
+		This servlet process contacts SFDC via web service to report on Case Reviews last week.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseReviewsLastWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseReviewsLastWeekServlet</servlet-name>
+      <url-pattern>/CaseReviewsLastWeekServlet</url-pattern>
+    </servlet-mapping>
+
+	
+	
+	<servlet>
+      <servlet-name>UpdateKudosBaselinesServlet</servlet-name>
+      <description>
+		This servlet updates kudos baselines in the db.
+      </description>
+      <servlet-class>com.borland.support.wig.options.UpdateKudosBaselinesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>UpdateKudosBaselinesServlet</servlet-name>
+      <url-pattern>/UpdateKudosBaselinesServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>UpdateTrainingBaselinesServlet</servlet-name>
+      <description>
+		This servlet updates training baselines in the db.
+      </description>
+      <servlet-class>com.borland.support.wig.options.UpdateTrainingBaselinesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>UpdateTrainingBaselinesServlet</servlet-name>
+      <url-pattern>/UpdateTrainingBaselinesServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+	<servlet>
+      <servlet-name>CaseClosureThisWeekServlet</servlet-name>
+      <description>
+		Queries SFDC for case closure rates this week.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseClosureThisWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseClosureThisWeekServlet</servlet-name>
+      <url-pattern>/CaseClosureThisWeekServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+
+	<servlet>
+      <servlet-name>CaseClosureLastWeekServlet</servlet-name>
+      <description>
+		Queries SFDC for case closure rates last week.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseClosureLastWeekServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseClosureLastWeekServlet</servlet-name>
+      <url-pattern>/CaseClosureLastWeekServlet</url-pattern>
+    </servlet-mapping>
+
+	
+	
+	<servlet>
+      <servlet-name>CaseClosureShowAllServlet</servlet-name>
+      <description>
+		Queries SFDC for case closure rates in specified date range.
+      </description>
+      <servlet-class>com.borland.support.wig.quality.CaseClosureShowAllServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>CaseClosureShowAllServlet</servlet-name>
+      <url-pattern>/CaseClosureShowAllServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>TimeOffServlet</servlet-name>
+      <description>
+		Inserts time off for Angel availability.
+      </description>
+      <servlet-class>com.borland.support.wig.availability.TimeOffServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TimeOffServlet</servlet-name>
+      <url-pattern>/TimeOffServlet</url-pattern>
+    </servlet-mapping>
+
+		<servlet>
+      <servlet-name>TimeOff_Batch_Servlet</servlet-name>
+      <description>
+		Inserts time off for Angel availability.
+      </description>
+      <servlet-class>com.borland.support.wig.availability.TimeOff_Batch_Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>TimeOff_Batch_Servlet</servlet-name>
+      <url-pattern>/TimeOff_Batch_Servlet</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>AngelCreateGroupServlet</servlet-name>
+      <description>
+		Creates groups to filter  Angel reports.
+      </description>
+      <servlet-class>com.borland.support.wig.availability.AngelCreateGroupServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AngelCreateGroupServlet</servlet-name>
+      <url-pattern>/AngelCreateGroupServlet</url-pattern>
+    </servlet-mapping>
+
+
+	<servlet>
+      <servlet-name>AngelReportsServlet</servlet-name>
+      <description>
+		Generates links to generated xls files
+      </description>
+      <servlet-class>com.borland.support.wig.availability.AngelReportsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>AngelReportsServlet</servlet-name>
+      <url-pattern>/AngelReportsServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <session-config>
+      <session-timeout>30</session-timeout>    <!-- 30 minutes -->
+    </session-config>
+
+
+</web-app>

@@ -1,0 +1,95 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Upload Angel Data", new_availability_path %></li>
+		<li><%= link_to "Options and Baselines", options_path %></li>
+		<br />
+		<li><%= link_to "Add New Time Off", new_time_off_path%></li>
+		<li><%= link_to "See Last Weeks Time Off", time_offs_path(:last_week=>true)%>
+		<li><%= link_to "See All Time Off", time_offs_path%></li>
+		
+ 	</ul>
+</div>
+<div class="report_wrapper">
+	
+	<h2>Availability Reports</h2>	
+	
+	<% cache do %>
+		<div class="subreport_wrapper">
+			<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'report_by_date'} do |f| %>
+			<div class="report_form">Weekly Report For<br/>
+			<%= f.select :start_date, avail_populate_select(@last_week_start) %></div>
+			<%= f.hidden_field :mode, :value=>'weekly' %>
+			<div class="report_submit"><%= submit_tag 'Go',:disable_with=>"Processing..." %></div>
+			<% end %>
+		</div>
+	<% end %>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'report_by_date'} do |f| %>
+		<div class="report_form">Daily Summary for all <%= f.select :emp_type, ["TSE","CSR"] %>s
+		<%= f.label :start_date, "For" %><br/><%= f.date_select :start_date, :order=>[:month, :day, :year], :default=>(Date.today == Date.today.monday ? 1.week.ago.end_of_week-2.days : Date.today-1.day)  %>
+		</div>
+		<%= f.hidden_field :mode, :value=>'daily' %>		
+		<div class="report_submit"><%= submit_tag 'Go',:disable_with=>"Processing..." %></div>
+		<% end %>
+	</div>
+	<br><br>
+	<h2>RAW Angel Reports</h2>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">All Availability Records This Week<br/>(<%= @this_week_start %> thru <%= @this_week_end %>)</div>
+		<input type="hidden" id="availability_start_date" name="availability[start_date]" value="<%= @this_week_start %>"/>
+		<input type="hidden" id="availability_end_date" name="availability[end_date]" value="<%= @this_week_end %>"/>
+		<div class="report_submit"><%= submit_tag 'Go',:disable_with=>"Processing..." %></div>
+		<% end %>
+	</div>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">All Availability Records Last Week<br/>(<%= @last_week_start %> thru <%= @last_week_end %>)</div>
+		<input type="hidden" id="availability_start_date" name="availability[start_date]" value="<%= @last_week_start %>"/>
+		<input type="hidden" id="availability_end_date" name="availability[end_date]" value="<%= @last_week_end %>"/>
+		<div class="report_submit"><%= submit_tag 'Go',:disable_with=>"Processing..." %></div>
+		<% end %>
+	</div>
+	<br><br>
+	<h2>Maintenance</h2>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'bulk_destroy'}, :method=>:delete do |f| %>
+		<div class="report_form">
+			<table>
+				<tr><td colspan=2>Delete All Records</td></tr>
+				<tr><td><%= f.label :start_date, "Between" %></td><td><%= f.date_select :start_date, :order=>[:month, :day, :year], :default=>@last_week_start.to_date %></td></tr>
+				<tr><td><%= f.label :end_date, "And" %></td><td><%= f.date_select :end_date, :order=>[:month, :day, :year], :default=>@last_week_end.to_date %></td></tr>
+			</table>			
+		</div>
+		<div class="report_submit"><%= submit_tag 'Go', :disable_with => "Processing...", :confirm=>"This will delete data and is not reversible.  Are you sure?"  %></div>
+		<%end%>
+	</div>
+	
+	
+	<% if RAILS_ENV!='production' %>
+	<!-- Test report only -->
+	<h2>DEBUG REPORTS</h2>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">DEBUG:All Availability Records</div>
+		<input type="hidden" id="availability_start_date" name="availability[start_date]" value="<%= 10.years.ago.to_date %>"/>
+		<input type="hidden" id="availability_end_date" name="availability[end_date]" value="<%= Date.today %>"/>
+		<div class="report_submit"><%= submit_tag 'Go' %></div>
+		<% end %>
+	</div>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'report_by_date'} do |f| %>
+		<div class="report_form">All Availability Records <br/>(<%= "2009-08-10" %> thru <%= "2009-08-14" %>)</div>
+		<input type="hidden" id="availability_start_date" name="availability[start_date]" value="2009-08-10"/>
+		<div class="report_submit"><%= submit_tag 'Go' %></div>
+		<% end %>
+	</div>
+	<div class="subreport_wrapper">
+		<% form_for :availability, :url=>{:controller=>'availabilities', :action=>'report_by_date'} do |f| %>
+		<div class="report_form">Availability Records for<br/>(8-17-2009 thru 8-21-2009)</div>
+		<input type="hidden" id="availability_start_date" name="availability[start_date]" value="2009-08-17"/>
+		<div class="report_submit"><%= submit_tag 'Go',:disable_with=>"Processing..." %></div>
+		<% end %>
+	</div>
+	<%end%>
+</div>

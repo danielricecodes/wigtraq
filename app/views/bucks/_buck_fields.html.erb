@@ -1,0 +1,28 @@
+<div id="buck_<%= index %>">
+<% fields_for "buck[#{index}]", buck do |f| %>
+  <% field_set_tag 'Adding Buck' do %>
+  <%= f.error_messages %>    
+	  <table>
+  	<tr>
+  		<th><%= f.label :amount, '# Bucks Awarded' %>
+  		<th><%= f.label :award_date, 'On This Date' %></th>
+		<th><%= f.label :manager_id, 'From ' %></th>
+		<th><%= f.label :employee_id, 'To ' %></th>
+  	</tr>
+	<tr>
+		<td><%= f.text_field :amount, :size=>5 %></td>
+		<td><%= f.date_select :award_date, :order=>[:month, :day, :year] %></td>		
+		<td><%= f.select :manager_id, Manager.active.collect {|p| [ p.name, p.id ] } %></td>
+		<td><%= f.select :employee_id, Employee.active.collect {|p| [ p.name, p.id ] } %></td>		
+	</tr>
+	<tr>
+		<td colspan=4><p>
+    <%= f.label :reason, 'Why' %><br />
+    <%= f.text_area :reason, :size=>"80x5" %>
+  </p></td>
+	</tr>
+	<tr><td  colspan="4" style="text-align:right;"><%= link_to_remote 'Remove', :url => { :action => 'remove_bucks', :index => index } %></td></tr>
+  </table>
+  <% end %>
+<% end %>
+</div>

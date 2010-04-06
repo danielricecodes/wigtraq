@@ -1,0 +1,19 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Back to List", bucks_path %></li>		
+ 	</ul>
+</div>
+
+<h4>Tip 1:  It is possible to submit multiple records at once!  Just push "Add More Bucks" at the bottom of the form to append on another form!</h4>
+<h4>Tip 2:  This form is not atomic, that is, it will save correct forms, but return forms with errors for you to fix.  You will not see all the forms you submitted if one form has errors.  Don't worry though, everything gets saved properly!</h4>
+<div class="form_wrapper">	
+	<% form_for :buck, :url => { :action => 'create' } do |f| %>
+	  <div id="bucks_multi">
+	  	<% @buck_array.each_with_index do |buck, index| %>
+	    	<%= render :partial => 'buck_fields', :locals => { :buck => buck, :index => index } %>
+		<% end %>  
+	  </div>
+	  <%= render :partial => 'add_buck_link', :locals => { :index => @buck_array.size } %>
+	  <p><%= submit_tag 'Submit Record(s)' %></p>
+	<% end %>	
+</div>

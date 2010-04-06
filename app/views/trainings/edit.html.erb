@@ -1,0 +1,11 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Show", training_path(@training) %></li>
+		<li><%= link_to "View All", trainings_path %></li>
+		
+ 	</ul>
+</div>
+<% title "Edit Training" %>
+
+<%= render :partial => 'form' %>
+

@@ -1,0 +1,24 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Back", availabilities_path %></li>		
+ 	</ul>
+</div>
+<h2><%= "All Angel Data Between #{@start_date} and #{@end_date}"%></h2>
+
+<table>
+<tr>
+	<th>Name</th>
+	<th>Date & Time</th>
+	<th>Event</th>
+	<th>Duration (mins)</th>
+</tr>
+<% @records.each do |record|%>
+<tr>
+	<td><%=h record.name %></td>
+	<td><%= record.event_date.getlocal.to_s :pretty_time %></td>
+	<td><%= record.event_type %></td>
+	<td><%= record.event_duration %></td>
+</tr>
+
+<%end%>
+</table>

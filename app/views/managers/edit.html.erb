@@ -1,0 +1,9 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Show", @manager %></li>	
+		<li><%= link_to "View All", managers_path %></li>	
+ 	</ul>
+</div>
+<% title "Edit Manager" %>
+
+<%= render :partial => 'form' %>

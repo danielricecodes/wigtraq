@@ -1,0 +1,26 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Edit", edit_time_off_path(@time_off) %></li>
+  		<li><%= link_to "Destroy", @time_off, :confirm => 'Are you sure?', :method => :delete %></li>
+		<br />
+		<li><%= link_to "Back", time_offs_path %></li>		
+ 	</ul>
+</div>
+
+<p>
+  <strong>Employee:</strong>
+  <%=h @time_off.employee.name %>
+</p>
+<p>
+  <strong>Day:</strong>
+  <%=h @time_off.day %>
+</p>
+<p>
+  <strong>Hours:</strong>
+  <%=h @time_off.hours %>
+</p>
+<p>
+  <strong>Reason:</strong>
+  <%= simple_format @time_off.reason %>
+</p>
+

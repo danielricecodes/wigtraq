@@ -1,0 +1,33 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Edit", edit_buck_path(@buck) %></li>
+		<li><%= link_to "Destroy", @buck, :confirm => 'Are you sure?', :method => :delete %></li>
+		<li><%= link_to "View All", bucks_path %></li>
+		<br>
+		<li><%= link_to 'New Buck', new_buck_path %></li>
+ 	</ul>
+</div>
+
+<% title "Buck" %>
+
+<p>
+  <strong>Award Date:</strong>
+  <%=h @buck.award_date %>
+</p>
+<p>
+  <strong>Reason:</strong>
+  <%=h @buck.reason %>
+</p>
+<p>
+  <strong>Amount:</strong>
+  <%=h @buck.amount %>
+</p>
+<p>
+  <strong>Manager:</strong>
+  <%=h @buck.manager.name %>
+</p>
+<p>
+  <strong>Employee:</strong>
+  <%=h @buck.employee.name %>
+</p>
+

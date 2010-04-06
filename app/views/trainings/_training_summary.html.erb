@@ -1,0 +1,27 @@
+<% achievement = ((Training.total_hours(@trainings).to_f/@baseline.to_f)*100).round %>
+<div class="training_summary">
+	<div><h4>Summary Report</h4></div>
+	<div class="training_content">		
+		<div>Technical Training: <%= Training.total_hours(@trainings.reject {|a| a.brand!="Technical"}) %></div>
+		<div>Soft Skills Training: <%= Training.total_hours(@trainings.reject {|a| a.brand!="Soft Skills"}) %></div>
+		<div>Product Training: <%= Training.total_hours(@trainings.reject {|a| a.brand!="Product"}) %></div>
+		<div>Other Training: <%= Training.total_hours(@trainings.reject {|a| a.brand!="Other"}) %></div>
+		<hr>
+		<div>Total Training: <%= Training.total_hours(@trainings) %></div>
+		<div>Total Number of Records: <%= @trainings.length %></div>
+		<hr>		
+		<div>Hours Needed: <%= @baseline %></div>
+		<hr>
+		<div>Achievement: <%= achievement %>%</div>
+	</div>
+	<% case achievement 
+		  when 0 ... 90
+            traffic_file = 'red.JPG'
+          when 90 ... 100
+            traffic_file = 'yellow.JPG'
+          else
+            traffic_file = 'green.JPG'
+       end
+    %>
+	<div class="training_image"><%= image_tag traffic_file %></div>
+</div>

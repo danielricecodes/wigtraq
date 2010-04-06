@@ -1,0 +1,20 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Back to List", trainings_path %></li>
+		
+ 	</ul>
+</div>
+<h4>Tip 1:  It is possible to submit multiple Training records at once!  Just push "Add Another Training Record" at the bottom of the form to append on another training record form!</h4>
+<h4>Tip 2:  This form is not atomic, that is, it will save correct forms, but return forms with errors for you to fix.  You will not see all the training records you submitted if one record has errors.  Don't worry though, everything gets saved properly!</h4>
+<div class="form_wrapper">
+	<% form_for :training, :url => { :action => 'create_multi' } do |f| %>
+	  
+	  <div id="trainings_multi">
+	  	<% @training_array.each_with_index do |training, index| %>
+	    	<%= render :partial => 'training_fields', :locals => { :training => training, :index => index } %>
+		<% end %>  
+	  </div>
+	  <%= render :partial => 'add_training_link', :locals => { :index => @training_array.size } %>
+	  <p><%= submit_tag 'Submit Record(s)' %></p>
+	<% end %>
+</div>

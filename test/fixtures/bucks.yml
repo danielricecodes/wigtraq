@@ -1,0 +1,13 @@
+one:
+  award_date: 2009-08-20
+  reason: MyText
+  amount: 1
+  manager: 
+  employee: 
+
+two:
+  award_date: 2009-08-20
+  reason: MyText
+  amount: 1
+  manager: 
+  employee: 

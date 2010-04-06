@@ -1,0 +1,31 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Add Time Off", new_time_off_path %></li>
+		<br />
+		<li><%= link_to "Back", availabilities_path %></li>		
+ 	</ul>
+</div>
+
+<div class="record_details">
+<br/>
+<table>
+  <tr>
+    <th>Employee</th>
+    <th>Day</th>
+    <th>Hours</th>
+	<th>Reason</th>
+  </tr>
+  <% for time_off in @time_offs %>
+    <tr>
+      <td><%=h time_off.employee.name %></td>
+      <td><%=h time_off.day %></td>
+      <td><%=h format("%.2f",time_off.pretty_hours) %></td>
+	  <td><%=h truncate(time_off.reason, :length=>25) %></td>
+      <td><%= link_to "Show", time_off %></td>
+      <td><%= link_to "Edit", edit_time_off_path(time_off) %></td>
+      <td><%= link_to "Destroy", time_off, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+</div>

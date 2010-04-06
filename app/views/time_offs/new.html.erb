@@ -1,0 +1,57 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Back", availabilities_path %></li>
+		<br/>
+		<p>Jump To:</p>
+		<li><a href="#vaca">Add Company/US Holidays</a></li>
+		<li><a href="#fullweek">Full Week</a></li>
+		<li><a href="#manual">Manually Add Time Off</a></li>
+ 	</ul>
+</div>
+
+<h4>Tip 1:  It is possible to submit multiple records at once!  Just push "Add More Time Off" at the bottom of the form to append on another time off form!</h4>
+<h4>Tip 2:  This form is not atomic, that is, it will save correct forms, but return forms with errors for you to fix.  You will not see all the time off records you submitted if one record has errors.  Don't worry though, everything gets saved properly!</h4>
+<h4>Tip 3:  Use 9 hours for a full day off</h4>
+<div class="form_wrapper">
+	<a name="manual"></a>
+	<% form_for :time_off, :url => { :action => 'create' } do |f| %>
+	  
+	  <div id="time_offs_multi">
+	  	<% @time_off_array.each_with_index do |time_off, index| %>
+	    	<%= render :partial => 'time_off_fields', :locals => { :time_off => time_off, :index => index } %>
+		<% end %>  
+	  </div>
+	  <%= render :partial => 'add_time_off_link', :locals => { :index => @time_off_array.size } %>
+	  <p><%= submit_tag 'Submit Record(s)' %></p>
+	<% end %>
+	
+	<br/>
+	<hr>
+	<br/>
+	<a name="fullweek"></a>
+	<% form_for :time_off, :url => { :action => "add_full_week" } do |f| %>
+	<% field_set_tag 'Add A Week Off For An Employee' do %>
+	<p>Tip: Pick <i>any day</i> contained within the Business Week the employee will be out of the office.  This link will automatically add the 5 records you would have had to do manually otherwise.</p>
+	<p>
+		Pick an employee <%= f.select :id, Employee.active.collect {|p| [ p.name, p.id ] } %><br/>
+		<%= f.date_select :start_date %>
+		
+	</p>
+	<p><%= f.submit "Add Week Off" %></p>
+	  <% end %>
+	<% end %>
+	
+	<br/>
+	<hr>
+	<br/>
+	<a name="vaca"></a>
+	<% form_for :time_off, :url => { :action => "add_holiday" } do |f| %>
+	<% field_set_tag 'Add Holiday For Everyone' do %>
+	<p>
+		Add a Holiday! (This applies to ALL Active Employees) <br/>
+		<%= f.date_select :day %>		
+	</p>
+	<p><%= f.submit "Add Holiday" %></p>
+	  <% end %>
+	<% end %>
+</div>

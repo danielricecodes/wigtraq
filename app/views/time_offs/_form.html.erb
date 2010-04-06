@@ -1,0 +1,30 @@
+<% form_for @time_off do |f| %>
+  <% field_set_tag 'Add Time Off Record(s)' do %>  
+	  <table>
+	  	<tr><td colspan="3"><%= f.error_messages %></td></tr>
+		<tr>
+	  		<th><%= f.label :employee_id, 'Time Off For' %></th>
+			<th><%= f.label :day, 'On Date' %></th>
+			<th><%= f.label :hours, '# of Hours' %></th>			
+	  	</tr>
+		<tr>
+			<td><%= f.select :employee_id, Employee.active.collect {|p| [ p.name, p.id ] } %></td>
+			<td><%= f.date_select :day, :order=>[:month, :day, :year] %></td>
+			<td><%= f.text_field :hours, :size=>10 %></td>			
+		</tr>
+		<tr>
+			<th colspan="3" style="text-align:left;"><%= f.label :reason %></th>
+		</tr>
+		<tr>
+			<td colspan="3"><%= f.text_area :reason, :size=>"80x5" %></td>
+		</tr>
+		<tr>
+			<td colspan="3" style="text-align:center;"><%= f.submit "Submit" %></td>
+		</tr>
+	  </table>	
+  <% end %>
+  
+<% end %>  
+  
+
+

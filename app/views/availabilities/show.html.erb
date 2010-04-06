@@ -1,0 +1,24 @@
+<div class="side_navbar">
+
+ 	<ul>
+ 		<li><%= link_to "Edit", edit_availability_path(@availability) %></li>
+		<li><%= link_to "Destroy", @availability, :confirm => 'Are you sure?', :method => :delete %></li>
+		<li><%= link_to "View All", availabilities_path %></li>
+ 	</ul>
+</div>
+<% title "Availability" %>
+
+<p>
+  <strong>Employee:</strong>
+  <%=h @availability.employee.name %>
+</p>
+<p>
+  <strong>Percentage:</strong>
+  <%=h @availability.percentage %>%
+</p>
+<p>
+  <strong>Date:</strong>
+  <%=h @availability.available_date %>
+</p>
+
+

@@ -1,0 +1,1 @@
+page["buck_#{params[:index]}"].remove

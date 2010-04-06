@@ -1,0 +1,30 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Edit", edit_training_path(@training) %></li>
+		<li><%= link_to "Destroy", training_path(@training), :confirm => 'Are you sure?', :method => :delete %></li>
+		<li><%= link_to "View All", trainings_path %></li>
+ 	</ul>
+</div>
+<% title "Training" %>
+
+<p>
+  <strong>Type:</strong>
+  <%=h @training.display_name %>  
+</p>
+<p>
+  <strong>Hours:</strong>
+  <%=h @training.hours_trained %>  
+</p>
+<p>
+  <strong>Name:</strong>
+  <%=h @training.employee.name %>  
+</p>
+<p>
+  <strong>Date:</strong>
+  <%=h @training.trainingDate %>  
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= simple_format(@training.description) %>  
+</p>
+

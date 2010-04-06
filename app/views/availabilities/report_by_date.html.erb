@@ -1,0 +1,55 @@
+<div class="side_navbar">
+ 	<ul> 		
+		<li><%= link_to "Back", availabilities_path %></li>		
+ 	</ul>
+</div>
+<h2><%= "Availability Report for All Employees Between #{@start_date.to_date} and #{(@end_date-1.day).to_date}"%></h2>
+
+<% if @show then %>
+<div class="record_details">
+<table>
+<tr>
+	<th align="left">Total Availability</th>
+	<th align="right"><%=@total_perc%>%</th>
+	<th>&nbsp;</th>
+</tr>
+<tr>
+	<td>Number of Employees in Scope</td>
+	<td><%= @employees_count %></td>
+</tr>
+</table>
+</div>
+<br />
+<div class="record_details">
+<table>
+<tr>
+	<th>Name</th>
+	<th>Idle (min)</th>
+	<th>Away (min)</th>
+	<th>Answered</th>
+	<th>Talk (incoming)</th>
+	<th>Talk (outgoing)</th>
+	<th>Wrap-up (min)</th>
+	<th>Total Accessibility Time (hours)</th>
+	<th># Days Worked</th>
+	<th>Goal Hours for Accessibility</th>
+	<th>Total Accessibility Rate</th>
+</tr>
+<% @displayhash.each do |display|%>
+<tr class='<%=display[:color]%>'>
+	<td><%= display[:employee_name] %></td>
+	<td><%= (display[:timeHash][:idle] / 60).round %></td>
+	<td><%= (display[:timeHash][:away] / 60).round %></td>
+	<td><%= display[:timeHash][:answered] %></td>
+	<td><%= (display[:timeHash][:incoming] / 60).round %></td>
+	<td><%= (display[:timeHash][:outgoing] / 60).round %></td>
+	<td><%= (display[:timeHash][:wrapup] / 60).round %></td>
+	<td><%= display[:timeHash][:avail]/3600 %></td>
+	<td><%= format("%.2f",display[:adjust][:days_worked]) %></td>
+	<td><%= display[:adjust][:hours_worked] %></td>
+	<td><%= display[:finalperc] %><%if display[:finalperc].is_a?(Numeric)%>%<%end%></td>
+</tr>
+<%end%>
+</table>
+</div>
+<% end %>

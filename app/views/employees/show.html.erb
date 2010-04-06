@@ -1,0 +1,13 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Edit", edit_employee_path(@employee) %></li>
+		<li><%= link_to "Destroy", @employee, :confirm => 'Are you sure?  This will remove the user from reports after today!!!', :method => :delete %></li>
+		<li><%= link_to "View All", employees_path %></li>		
+ 	</ul>
+</div>
+<% title "Employee" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @employee.name %>
+</p>

@@ -1,0 +1,4 @@
+page.insert_html :bottom, :bucks_multi, :partial => 'buck_fields',
+                 :locals => { :buck => @buck, :index => params[:index] }
+
+page.replace :add_buck_link, :partial => 'add_buck_link', :locals => { :index => (params[:index].to_i + 1) }

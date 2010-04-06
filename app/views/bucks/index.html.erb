@@ -1,0 +1,37 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "Add Bucks", new_buck_path %></li>		
+ 	</ul>
+</div>
+
+<div class="report_wrapper">
+	<h2>Bucks Reports</h2>
+	<div class="subreport_wrapper">
+		<% form_for :buck, :url=>{:controller=>'bucks', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">All Bucks This Week<br/>(<%= @this_week_start %> thru <%= @this_week_end %>)</div>
+		<input type="hidden" id="buck_start_date" name="buck[start_date]" value="<%= @this_week_start %>"/>
+		<input type="hidden" id="buck_end_date" name="buck[end_date]" value="<%= @this_week_end %>"/>
+		<div class="report_submit"><%= submit_tag 'Go' %></div>
+		<% end %>
+	</div>
+	<div class="subreport_wrapper">
+		<% form_for :buck, :url=>{:controller=>'bucks', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">All Bucks Last Week<br/>(<%= @last_week_start %> thru <%= @last_week_end %>)</div>
+		<input type="hidden" id="buck_start_date" name="buck[start_date]" value="<%= @last_week_start %>"/>
+		<input type="hidden" id="buck_end_date" name="buck[end_date]" value="<%= @last_week_end %>"/>
+		<div class="report_submit"><%= submit_tag 'Go' %></div>
+		<% end %>
+	</div>
+	<div class="subreport_wrapper">
+		<% form_for :buck, :url=>{:controller=>'bucks', :action=>'list_by_date'} do |f| %>
+		<div class="report_form">
+			<table>
+				<tr><td colspan=2>All Bucks For <%= f.select :id, Employee.all.collect {|p| [ p.name, p.id ] } %></td></tr>
+				<tr><td><%= f.label :start_date, "Between" %></td><td><%= f.date_select :start_date, :order=>[:month, :day, :year], :default=>Date.today.beginning_of_week %></td></tr>
+				<tr><td><%= f.label :end_date, "And" %></td><td><%= f.date_select :end_date, :order=>[:month, :day, :year], :default=>Date.today.end_of_week-2.days %></td></tr>
+			</table>
+		</div>
+		<div class="report_submit"><%= submit_tag 'Go' %></div>
+		<%end%>
+	</div>
+</div>

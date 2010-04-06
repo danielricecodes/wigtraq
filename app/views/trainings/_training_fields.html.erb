@@ -1,0 +1,29 @@
+<div id="training_<%= index %>">
+<% fields_for "training[#{index}]", training do |f| %>
+  <% field_set_tag 'New Training Record' do %>
+	  <table>
+	  	<tr><td colspan="4"><%= f.error_messages %></td></tr>
+		<tr>
+	  		<th><%= f.label :employee_id, 'Training For' %></th>
+			<th><%= f.label :trainingDate, 'On Date' %></th>
+			<th><%= f.label :hours_trained, '# of Hours' %></th>
+			<th><%= f.label :brand, 'Type' %></th>
+	  	</tr>
+		<tr>
+			<td><%= f.select :employee_id, Employee.active.collect {|p| [ p.name, p.id ] } %></td>
+			<td><%= f.date_select :trainingDate, :order=>[:month, :day, :year] %></td>
+			<td><%= f.text_field :hours_trained, :size=>10 %></td>
+			<td><%= f.select :brand, [["Technical"], ["Product"], ["Soft Skills"], ["Other"]] %></td>
+		</tr>
+		<tr>
+			<th colspan="4" style="text-align:left;"><%= f.label :description %></th>
+		</tr>
+		<tr>
+			<td colspan="4"><%= f.text_area :description, :size=>"80x5" %></td>
+		</tr>
+		<tr><td  colspan="4" style="text-align:right;"><%= link_to_remote 'Remove', :url => { :action => 'remove_training', :index => index } %></td></tr>		
+	  </table>
+	  	
+  <% end %>  
+<% end %>
+</div>

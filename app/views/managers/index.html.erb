@@ -1,0 +1,21 @@
+<div class="side_navbar">
+ 	<ul>
+ 		<li><%= link_to "New Manager", new_manager_path %></li>
+		<li><%= link_to "Options and Baselines", options_path %></li>	
+ 	</ul>
+</div>
+<% title "Managers" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for manager in @managers %>
+    <tr>
+      <td><%=h manager.name %></td>
+      <td><%= link_to "Show", manager %></td>
+      <td><%= link_to "Edit", edit_manager_path(manager) %></td>
+      <td><%= link_to "Delete", manager, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
